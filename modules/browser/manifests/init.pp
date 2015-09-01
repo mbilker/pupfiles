@@ -1,12 +1,14 @@
+# defines the browser type
+
 define browser (
-	$browser = 'chrome'
+  $browser = 'chrome'
 ) {
-	case $browser {
-		'chrome': {
-			include browser::chrome
-		}
-		'tor-browser': {
-			include browser::torbrowser
-		}
-	}
+  case $browser {
+    'chrome': {
+      include browser::chrome
+    }
+    'tor-browser': {
+      include browser::torbrowser
+    }
+  }
 }
