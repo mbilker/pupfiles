@@ -1,9 +1,12 @@
+# Installs a Arch Linux AUR package
+
 define aur_package (
-	$ensure = installed
+  $ensure = installed
 ) {
-	require aur_package::yaourt
-	package {$title:
-		name => "$name",
-		ensure => $ensure
-	}
+  require aur_package::yaourt
+
+  package { $title:
+    ensure => $ensure,
+    name   => $name
+  }
 }
