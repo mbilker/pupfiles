@@ -5,10 +5,10 @@ if [ "$EUID" -ne 0 ]; then
 	exit 1
 fi
 
-pupUrl=git://perot.me/pupfiles
+pupUrl=git://mbilker.us/pupfiles
 pupDir=/var/lib/pupfiles
-pupPrivateUrlInitial=git://perot.me/pupfiles-private
-pupPrivateUrlActual=git@perot.me:pupfiles-private
+pupPrivateUrlInitial=git://mbilker.us/pupfiles-private
+pupPrivateUrlActual=git@mbilker.us:pupfiles-private
 
 scriptDir=$(dirname "$BASH_SOURCE")
 scriptDir=$(cd "$scriptDir" && pwd)
@@ -22,6 +22,15 @@ fi
 
 setterm -blength 0
 
+getpackages() {
+	for package; do
+		if ! puppet resource package "$package" ensure=installed &> /dev/null; then
+			echo "Puppet failed to make sure we have $package." >&2
+			exit 1
+		fi
+	done
+}
+
 if ! pacman -Q puppet &> /dev/null; then
 	if ! grep -iP '^\[archlinuxfr\]$' /etc/pacman.conf &> /dev/null; then
 		echo >> /etc/pacman.conf # Empty line
@@ -34,15 +43,9 @@ if ! pacman -Q puppet &> /dev/null; then
 	fi
 	yaourt -Sya --noconfirm puppet || exit 1
 fi
-getpackages() {
-	for package; do
-		if ! puppet resource package "$package" ensure=installed &> /dev/null; then
-			echo "Puppet failed to make sure we have $package." >&2
-			exit 1
-		fi
-	done
-}
+
 getpackages openssh git scrypt python python2 python-scrypt
+
 if [ ! -d "$pupDir" ]; then
 	mkdir -p "$pupDir"
 	if ! git clone --recursive "$pupUrl" "$pupDir"; then
@@ -60,12 +63,15 @@ else
 		exit 1
 	fi
 fi
+
 cd "$pupDir"
+
 if [ ! -f private/ssh.key ]; then
 	# If we don't have the appropriate ssh key to the private pupfiles repo,
 	# then remove any leftover private stuff
 	rm -rf private.key private encrypted-private
 fi
+
 if [ ! -d encrypted-private ]; then
 	fullPrivateCheckout='true'
 	while [ -n "$fullPrivateCheckout" ]; do
@@ -93,13 +99,16 @@ else
 	unset GIT_SSH
 	cd ..
 fi
+
 mkdir -p private
 decryptionKey=''
+
 if [ ! -f private.key ]; then
 	echo -n 'Enter decryption key: '
 	read decryptionKey
 	echo "$decryptionKey" > private.key
 fi
+
 while IFS= read -d $'\0' -r encryptedFile; do
 	file=$(echo "$encryptedFile" | sed 's#^encrypted-private/*##')
 	decryptedFile="private/$file"
@@ -119,6 +128,7 @@ while IFS= read -d $'\0' -r encryptedFile; do
 		exit 1
 	fi
 done < <(find encrypted-private -name .git -prune -o -print0)
+
 while IFS= read -d $'\0' -r decryptedFile; do
 	file=$(echo "$decryptedFile" | sed 's#^private/*##')
 	encryptedFile="encrypted-private/$file"
@@ -126,12 +136,15 @@ while IFS= read -d $'\0' -r decryptedFile; do
 		rm -rf "$decryptedFile"
 	fi
 done < <(find private -print0)
+
 chmod -R g-rwx,o-rwx private
 cd "$pupDir"
+
 chosenManifest=$(hostname | tr '[:upper:]' '[:lower:]')
 if [ -f this.manifest ]; then
 	read chosenManifest < this.manifest
 fi
+
 while [ ! -f "manifests/$chosenManifest.pp" ]; do
 	echo 'Which one are you?'
 	while IFS= read -d $'\0' -r manifest; do
@@ -141,11 +154,15 @@ while [ ! -f "manifests/$chosenManifest.pp" ]; do
 	read chosenManifest
 	echo "$chosenManifest" > this.manifest
 done
+
 modulePath="$pupDir/private/modules:$pupDir/modules:`puppet apply --configprint modulepath`"
+
 if [ -f "private/manifests/$chosenManifest.pp" ]; then
 	cat "private/manifests/$chosenManifest.pp" "manifests/$chosenManifest.pp" > "manifests/.$chosenManifest.gen.pp"
 else
 	cp "manifests/$chosenManifest.pp" "manifests/.$chosenManifest.gen.pp"
 fi
+
 export FACTERLIB="$pupDir/facter"
+
 exec puppet apply --modulepath "$modulePath" "manifests/.$chosenManifest.gen.pp"

@@ -20,7 +20,7 @@ class server::services::mariadb (
 		require => [Package['mysql-clients'], Package['mariadb']]
 	}
 	if $service != false {
-		systemd_service {'mysqld':
+		service {'mysqld':
 			require => Package['mariadb']
 		}
 	}

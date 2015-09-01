@@ -2,7 +2,7 @@ class console::oh_my_zsh {
 	require console::zsh
 	aur_package {'zsh-completions':}
 	aur_package {'zsh-syntax-highlighting':}
-	include base::etienne
+	include base::mbilker
 	include base::packaging::pkgfile
 	enduser_file {'.zshrc':
 		source => 'console/zsh',

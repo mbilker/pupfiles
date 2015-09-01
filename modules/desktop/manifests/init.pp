@@ -1,16 +1,13 @@
 class desktop (
 	$laptop = false,
 	$graphics_drivers = 'nvidia',
-	$dpi = 112,
-	$desktop_environment = 'kde',
-	$kde_compositing = 'OpenGL',
-	$browser = 'firefox',
+	$dpi = 100,
+	$desktop_environment = 'i3',
+	$browser = 'chrome',
 	$apps = true,
 	$fonts = true,
 	$media = true,
-	$games = false,
-	$dotsync = undef,
-	$dotsyncdecrypt = undef
+	$games = false
 ) {
 	include desktop::xorg
 	if $laptop {
@@ -30,17 +27,9 @@ class desktop (
 		}
 	}
 	case $desktop_environment {
-		'kde': {
-			class {'desktop::environment::kde':
-				dpi => $dpi,
-				laptop => $laptop,
-				compositing => $kde_compositing
-			}
+		'i3': {
+			include desktop::environment::i3
 		}
-	}
-	class {'desktop::sync':
-		dotsync => $dotsync,
-		dotsyncdecrypt => $dotsyncdecrypt
 	}
 	if $browser {
 		browser {$browser:}

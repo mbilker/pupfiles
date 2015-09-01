@@ -1,8 +1,3 @@
-# This file is not a regular .gitignore file
-# It is the source file that goes into ~/.gitignore
-# such that git ignores all these files by default
-.env
-.directory
 ._*
 *~
 *.kate-swp

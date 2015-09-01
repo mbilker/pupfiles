@@ -25,17 +25,6 @@ class desktop::fonts {
 		source => 'desktop/fonts/stencil'
 	}
 
-	# Team Fortress 2
-	font {'TF2.ttf':
-		source => 'desktop/fonts/tf2'
-	}
-	font {'TF2Build.ttf':
-		source => 'desktop/fonts/tf2'
-	}
-	font {'TF2secondary.ttf':
-		source => 'desktop/fonts/tf2'
-	}
-
 	# Meiryo
 	font {'Meiryo.ttc':
 		source => 'desktop/fonts/meiryo'

@@ -16,13 +16,13 @@ class console::gpg {
 	bin_wrapper::torify {'gpg-agent':
 		torsocks_profile => '/etc/torsocks.d/gnupg.conf'
 	}
-	include console::gpg::parcimonie
+	#include console::gpg::parcimonie
 
-	include private::console::gpg
+	#include private::console::gpg
 	# I do not want to reveal my list of GPG keys.
 	# For reference though, it's basically a list of blocks that look like the following:
-	#gpg_key {'etienne/user@hostname':
+	#gpg_key {'mbilker/user@hostname':
 	#	source => 'console/gpg/user.asc',
-	#	user => 'etienne'
+	#	user => 'mbilker'
 	#}
 }

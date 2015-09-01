@@ -1,0 +1,30 @@
+[general]
+mode = normal
+framerate = 60
+sensitivity = 100
+bars = 0
+
+[input]
+method = alsa
+source = hw:Loopback,1
+
+[output]
+method = ncurses
+
+[color]
+background = black
+foreground = yellow
+
+[smoothing]
+integral = 0.4 # multiplier for the integral smoothing calculations. Takes values from 0 - 0.99. Higher values means smoother, but less precise. 0 to disable.
+monstercat = 0
+gravity = 1
+ignore = 0
+
+[eq]
+# This one is tricky. You can have as much keys as you want. More keys = more precision. Look at readme.md on github for further explanations and examples.
+1 = 1.5
+2 = 1.5
+3 = 1
+4 = 1
+5 = 1

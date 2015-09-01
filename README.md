@@ -1,6 +1,8 @@
 Machine setup/sync scripts
 ==========================
 
+Originally from `https://github.com/EtiennePerot/pupfiles`
+
 Purpose
 -------
 This repository holds the public part of the setup and config files I use on

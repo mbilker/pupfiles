@@ -1,7 +1,8 @@
 class desktop::networkmanager {
 	package {'networkmanager':}
 	package {'networkmanager-openvpn':}
-	systemd_service {'NetworkManager':
+	service {'NetworkManager':
+		ensure => enabled,
 		require => Package ['networkmanager']
 	}
 }

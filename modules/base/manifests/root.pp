@@ -1,5 +1,4 @@
 class base::root {
-	include base::systemd
 	include console::zsh
 	user {'root':
 		home => '/root',

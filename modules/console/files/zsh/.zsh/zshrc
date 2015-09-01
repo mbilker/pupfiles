@@ -2,16 +2,18 @@
 
 ZSHC="$(dirname "${BASH_SOURCE:-$0}")"
 ZSH_CUSTOM="$ZSHC/custom"
-DISABLE_AUTO_UPDATE=true
+ZSH="$ZSHC/oh-my-zsh"
 
+DISABLE_AUTO_UPDATE=true
 COMPLETION_WAITING_DOTS=true
-plugins=(archlinux cdenv git mercurial ssh-gpg-monkeysphere-agents svn undistract-me)
+
+plugins=(git archlinux undistract-me)
+
 setopt completealiases
 setopt histignoredups
 setopt auto_pushd
 unsetopt correct_all
 
-ZSH="$ZSHC/oh-my-zsh"
 source "$ZSH/oh-my-zsh.sh"
 source "$ZSHC/zsh_theme"
 
@@ -33,9 +35,26 @@ if [ -f "$ZSHC/zsh_aliases" ]; then
 	source "$ZSHC/zsh_aliases"
 fi
 
+if [ -f "$HOME/.dircolors" ]; then
+	eval $(dircolors ~/.dircolors)
+fi
+
+if [[ $TERM == xterm-termite ]]; then
+	. /etc/profile.d/vte.sh
+	__vte_prompt_command
+fi
+
 export EDITOR=nano # Don't judge me!
-export PATH="/etc/bin-wrappers:/opt/android-sdk/tools:/opt/android-sdk/platform-tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
-export GPGKEY=5CFC3B88974EE250
-export PAGER=most
-export LANG=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
+export TERMINAL=termite
+#export GPGKEY=5CFC3B88974EE250
+export PAGER=less
+
+echo -en "\e[38;05;190m"
+/usr/bin/figlet $(/usr/bin/hostname --short)
+echo -en "\e[0m"
+
+echo -e "\e[38;05;3m$(/usr/bin/fortune | /usr/bin/cowsay -f small)\e[0m"
+
+if [ -f "$HOME/.ssh/id_ed25519" ]; then
+	eval $(keychain --eval ~/.ssh/id_ed25519)
+fi

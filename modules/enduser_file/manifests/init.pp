@@ -10,9 +10,9 @@ define enduser_file (
 	$target = false,
 	$absolutetarget = true
 ) {
-	enduser_file::single {"/home/etienne/$name":
+	enduser_file::single {"/home/mbilker/$name":
 		filename => $filename,
-		owner => 'etienne',
+		owner => 'mbilker',
 		group => 'users',
 		ensure => $ensure,
 		mode => $mode,
@@ -22,7 +22,7 @@ define enduser_file (
 		replace => $replace,
 		target => $target,
 		absolutetarget => $absolutetarget,
-		targetprefix => '/home/etienne'
+		targetprefix => '/home/mbilker'
 	}
 	if ! $noroot {
 		enduser_file::single {"/root/$name":

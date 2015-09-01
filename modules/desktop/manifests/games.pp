@@ -6,7 +6,6 @@ class desktop::games {
 	package {'winetricks':
 		require => Package['wine']
 	}
-	aur_package {'steam':}
-	package {'xonotic':}
-	aur_package {'dolphin-emu':}
+	package {'steam':}
+	aur_package {'dolphin-emu-git':}
 }
