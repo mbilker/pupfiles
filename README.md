@@ -1,7 +1,7 @@
 Machine setup/sync scripts
 ==========================
 
-Originally from `https://github.com/EtiennePerot/pupfiles`
+Originally from [https://github.com/EtiennePerot/pupfiles]
 
 Purpose
 -------
