@@ -3,7 +3,7 @@ define enduser_file::single (
 	$owner,
 	$group,
 	$ensure = present,
-	$mode = 0600,
+	$mode = '0600',
 	$source = false,
 	$recurse = false,
 	$content = false,

@@ -8,7 +8,7 @@ define sysctl (
 			file {"/etc/sysctl.d/$file":
 				owner => 'root',
 				group => 'root',
-				mode => 0000
+				mode => '0000'
 			}
 		}
 		ini_setting { "sysctl:$file/$key":

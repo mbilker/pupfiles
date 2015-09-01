@@ -9,13 +9,13 @@ class base::mbilker {
 		membership => minimum,
 		comment => 'mbilker',
 		system => false,
-		shell => '/bin/zsh',
-		require => [Class['console::zsh'], Group['adm']],
+		shell => '/usr/bin/zsh',
+		require => Class['console::zsh'],
 		password => template('private/base/mbilker/password')
 	}
 	file {'/home/mbilker':
 		ensure => directory,
-		mode => 0600,
+		mode => '0600',
 		owner => 'mbilker',
 		group => 'users'
 	}

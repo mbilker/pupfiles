@@ -10,11 +10,14 @@ class desktop (
 	$games = false
 ) {
 	include desktop::xorg
+	include desktop::config_directory
+
 	if $laptop {
 		class {'desktop::laptop':
 			desktop_environment => $desktop_environment
 		}
 	}
+
 	case $graphics_drivers {
 		'nvidia': {
 			include desktop::graphics::nvidia
@@ -26,16 +29,20 @@ class desktop (
 			include desktop::graphics::intel
 		}
 	}
+
 	case $desktop_environment {
 		'i3': {
 			include desktop::environment::i3
 		}
 	}
+
 	if $browser {
 		browser {$browser:}
 	}
 	browser {'tor-browser':} # No machine should not have no way of anonymously communicating with the outside
+
 	include desktop::networkmanager
+
 	if $apps {
 		include desktop::apps
 	}

@@ -1,20 +1,20 @@
 class base::root {
 	include console::zsh
-	user {'root':
+	user { 'root':
 		home => '/root',
 		managehome => true,
 		gid => 'root',
 		groups => ['root', 'wheel', 'sys', 'adm'],
 		membership => minimum,
-		comment => 'System root account',
+		comment => 'root',
 		system => false,
-		shell => '/bin/zsh',
-		require => [Class['console::zsh'], Group['adm']],
+		shell => '/usr/bin/zsh',
+		require => Class['console::zsh'],
 		password => template('private/base/root/password')
 	}
-	file {'/root':
+	file { '/root':
 		ensure => directory,
-		mode => 0600,
+		mode => '0600',
 		owner => 'root',
 		group => 'root'
 	}

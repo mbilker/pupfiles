@@ -1,9 +1,6 @@
 class desktop::media::cava {
-	aur_pacakage {'cava-git':}
+	aur_package {'cava-git':}
 
-	enduser_file {'.config':
-		ensure => directory
-	}
 	enduser_file {'.config/cava':
 		ensure => directory
 	}

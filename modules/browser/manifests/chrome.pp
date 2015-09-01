@@ -1,3 +1,3 @@
 class browser::chrome {
-	aur_browser {'google-chrome':}
+	aur_package {'google-chrome':}
 }

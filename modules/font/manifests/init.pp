@@ -20,7 +20,7 @@ define font (
 			ensure => directory,
 			owner => root,
 			group => root,
-			mode => 0755,
+			mode => '0755',
 		}
 	}
 	file {"/usr/local/share/fonts/$firstletter/$filename":
@@ -28,7 +28,7 @@ define font (
 		source => $multisource,
 		owner => root,
 		group => root,
-		mode => 0644,
+		mode => '0644',
 		notify => Exec['Update font cache (fc-cache)']
 	}
 }

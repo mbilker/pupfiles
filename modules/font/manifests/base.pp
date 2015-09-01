@@ -5,12 +5,12 @@ class font::base {
 	}
 	file {'/usr/share/fonts':
 		ensure => directory,
-		mode => 0644,
+		mode => '0644',
 		require => Package['fontconfig']
 	}
 	file {'/usr/share/fonts/TTF':
 		ensure => directory,
-		mode => 0644,
+		mode => '0644',
 		require => Package['fontconfig']
 	}
 	exec {'Update font cache (fc-cache)':
