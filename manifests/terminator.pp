@@ -1,9 +1,9 @@
-class {'base::mbilker':}
+class { 'base::mbilker': }
 
-class {'console':}
+class { 'console': }
 
-class {'desktop':
-	graphics_drivers => 'nvidia',
-	games => true,
-	dpi => 100
+class { 'desktop':
+  graphics_drivers => 'nvidia',
+  games            => true,
+  dpi              => 100
 }
