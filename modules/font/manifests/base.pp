@@ -1,6 +1,7 @@
 # Manages font related files
 
 class font::base {
+  include base::packaging::infinality
   include desktop::xorg
 
   package { 'fontconfig':
@@ -9,12 +10,7 @@ class font::base {
     require => Package['xorg-server']
   }
 
-  file { '/usr/share/fonts':
-    ensure  => directory,
-    mode    => '0644',
-    require => Package['fontconfig']
-  }
-  file { '/usr/share/fonts/TTF':
+  enduser_file { '.fonts':
     ensure  => directory,
     mode    => '0644',
     require => Package['fontconfig']
