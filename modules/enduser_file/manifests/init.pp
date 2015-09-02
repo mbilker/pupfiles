@@ -8,7 +8,6 @@ define enduser_file (
   $recurse = false,
   $content = false,
   $replace = true,
-  $noroot = false,
   $target = false,
   $absolutetarget = true
 ) {
@@ -25,22 +24,5 @@ define enduser_file (
     target         => $target,
     absolutetarget => $absolutetarget,
     targetprefix   => '/home/mbilker'
-  }
-
-  if ! $noroot {
-    enduser_file::single { "/root/${name}":
-      ensure         => $ensure,
-      filename       => $filename,
-      owner          => 'root',
-      group          => 'root',
-      mode           => $mode,
-      source         => $source,
-      recurse        => $recurse,
-      content        => $content,
-      replace        => $replace,
-      target         => $target,
-      absolutetarget => $absolutetarget,
-      targetprefix   => '/root'
-    }
   }
 }
