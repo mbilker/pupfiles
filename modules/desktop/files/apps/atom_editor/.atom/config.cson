@@ -8,3 +8,9 @@
     ]
   "linter-puppet-lint":
     oldVersion: false
+  editor:
+    invisibles: {}
+    tabType: "soft"
+  linter: {}
+  "tabs-to-spaces":
+    onSave: "untabify"

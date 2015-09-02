@@ -1,15 +1,33 @@
+# Installs media related packages
+
 class desktop::media {
-	package {'vlc':}
-	package {'ffmpeg':}
-	include desktop::media::mpv
-	include desktop::media::ncmpcpp
-	include desktop::media::cava
-	package {'mencoder':}
-	package {'mkvtoolnix-cli':}
-	package {'mkvtoolnix-gtk':}
-	package {'handbrake-cli':}
-	package {'handbrake':}
-	package {'pavucontrol':}
-	aur_package {'paman':}
-	aur_package {'freetuxtv':}
+  package { 'vlc':
+    ensure => present
+  }
+  package { 'ffmpeg':
+    ensure => present
+  }
+
+  include desktop::media::mpv
+  include desktop::media::ncmpcpp
+  include desktop::media::cava
+
+  package  {'mencoder':
+    ensure => present
+  }
+  package { 'mkvtoolnix-cli':
+    ensure => present
+  }
+  package { 'mkvtoolnix-gtk':
+    ensure => present
+  }
+  package { 'handbrake-cli':
+    ensure => present
+  }
+  package { 'handbrake':
+    ensure => present
+  }
+  package { 'pavucontrol':
+    ensure => present
+  }
 }
