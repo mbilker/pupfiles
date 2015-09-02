@@ -24,7 +24,7 @@ setterm -blength 0
 
 getpackages() {
 	for package; do
-		if ! puppet resource package "$package" ensure=installed &> /dev/null; then
+		if ! puppet resource package "$package" ensure=present &> /dev/null; then
 			echo "Puppet failed to make sure we have $package." >&2
 			exit 1
 		fi
@@ -32,17 +32,20 @@ getpackages() {
 }
 
 if ! pacman -Q puppet &> /dev/null; then
+	pacman -Sy --noconfirm puppet || exit 1
+fi
+
+if ! pacman -Q yaourt &> /dev/null; then
 	if ! grep -iP '^\[archlinuxfr\]$' /etc/pacman.conf &> /dev/null; then
 		echo >> /etc/pacman.conf # Empty line
 		echo '[archlinuxfr]' >> /etc/pacman.conf
 		echo 'Server = http://repo.archlinux.fr/$arch' >> /etc/pacman.conf
 		echo 'SigLevel = Optional' >> /etc/pacman.conf
 	fi
-	if ! pacman -Q yaourt &> /dev/null; then
-		pacman -Sy --noconfirm yaourt || exit 1
-	fi
-	yaourt -Sya --noconfirm puppet || exit 1
+
+	pacman -Sya --noconfirm yaourt || exit 1
 fi
+
 
 getpackages openssh git scrypt python python2 python-scrypt
 
@@ -74,9 +77,11 @@ fi
 
 if [ ! -d encrypted-private ]; then
 	fullPrivateCheckout='true'
+
 	while [ -n "$fullPrivateCheckout" ]; do
 		echo 'Open the floodgates and press Enter.'
 		read
+
 		if git clone --recursive "$pupPrivateUrlInitial" encrypted-private; then
 			fullPrivateCheckout=''
 			cd encrypted-private
@@ -112,6 +117,7 @@ fi
 while IFS= read -d $'\0' -r encryptedFile; do
 	file=$(echo "$encryptedFile" | sed 's#^encrypted-private/*##')
 	decryptedFile="private/$file"
+
 	if [ -d "$encryptedFile" ]; then
 		mkdir -p "$decryptedFile"
 	elif [ -f "$encryptedFile" ]; then
