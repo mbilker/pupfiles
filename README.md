@@ -1,7 +1,7 @@
 Machine setup/sync scripts
 ==========================
 
-Originally from [https://github.com/EtiennePerot/pupfiles]
+Originally from https://github.com/EtiennePerot/pupfiles
 
 Purpose
 -------
@@ -26,64 +26,27 @@ Quite a few things, depending on how much you want it to do. Here's some of it
 * Populate GPG keyring with personal keys, configure GPG's keyserver list
   and preferred algorithms
 * Make man pages colorized (mostlike)
-* Set up Synergy+ to share mouse/keyboard over the network
-* Set up my synchronized encfs drive (currently hosted on SpiderOak)
 * Set up MAC address spoofing and IPv6 privacy extensions on NICs
 * Set up Git and my configuration and shortcuts for it
 * Disable hardware PC speaker
 * Set up DKMS, make `linux-headers` package to be upgraded first
-* Set up tlsdate
 * Limit systemd journal to a more reasonable size (50MB)
 * Enable readahead replay and data collection
 * Add my favorite fonts
 * Set up `pacman`
 * Install basic console packages (`screen`, `most`, `htop`, etc)
 * Configure SSH and populate its aliases
-* Set up Monkeysphere (keys and SSH config), with automatic identity loading
-* Set up `getmail` and associated identities and cronjobs and `maidag` MDA and
-  its Sieve rules
-* Set up KDE:
-    * Use MariaDB instead of MySQL for Akonadi
-    * Configure every KCM ever (mouse input, keyboard layout, key repetition
-      settings, power management, Qt rendering engine, GTK integration)
-    * Add themes (Oxygen, Caledonia)
-    * Set up KWin effects and speed settings
-    * Create `~/.compose-cache`
-    * Set up KMix
-    * Set up KDM for auto-login-but-still-require-password mode
-    * Install my wallpaper rotation
+* Set up SSH keys and config, with automatic identity loading
+* Set up i3:
+    * Use my configuration for i3status
+    * Configures my i3 keybinds
 * Install and configure lots of applications:
     * Yakuake, with associated configuration and keyboard shortcut
-    * Konsole, with associated configuration, profile, and font
     * KeePassX, with my own autostarting patch and configuration
     * Konversation, with associated configuration
     * Okteta, with associated configuration
-    * KCalc
-    * Dolphin, with associated configuration
-    * Filelight, with associated configuration
-    * KMyMoney (what a horrible name), with associated configuration
-    * KMail2 (it's a big one), with associated configuration and identities
-    * Kleopatra, with associated configuration
-    * Gwenview, with associated configuration
-    * Kate (also a big one), with associated configuration
-    * KTorrent, with associated configuration
-    * redshift, with associated configuration and auto-starting behavior
-    * K3B, with associated configuration
-    * Okular, with associated configuration
-    * KRuler
-    * KDiff3, with associated configuration
-    * Ark, with associated configuration
-    * MPlayer and SMPlayer, with associated configuration
+    * MPV, ncmpcpp, and cava, with associated configuration
     * [tunnels], with associated configuration
-* Set up Firefox:
-    * Set up lots of Firefox preferences on default profile
-    * Preconfigure some extensions that Firefox Sync will autodownload on start
-    * Set up cron job to vaccuum the profile databases
-    * Set up symlinks to encfs synchronized drive to synchronize things that
-      Firefox Sync cannot synchronize by itself
-    * Set up fancy newtab/home pages
-* Install Tor and the Tor browser bundle
-* Configure some applications to use Tor for networking
 
 Usage
 -----
