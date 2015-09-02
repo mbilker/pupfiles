@@ -1,4 +1,6 @@
+# Installs shutils
+
 class console::shutils {
-	package {'ack':}
-	package {'dos2unix':}
+  package { 'ack': }
+  package { 'dos2unix': }
 }

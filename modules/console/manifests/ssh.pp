@@ -1,13 +1,15 @@
+# Manages user ssh config
+
 class console::ssh {
-	include console::gpg
+  include console::gpg
 
-	package {'autossh':}
-	package {'mosh':}
+  package { 'autossh': }
+  package { 'mosh': }
 
-	enduser_file {'.ssh':
-		ensure => directory
-	}
-	enduser_file {'.ssh/config':
-		content => template('private/console/ssh/config.erb')
-	}
+  enduser_file { '.ssh':
+    ensure => directory
+  }
+  enduser_file { '.ssh/config':
+    content => template('private/console/ssh/config.erb')
+  }
 }
