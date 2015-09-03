@@ -1,3 +1,5 @@
+# r10k puppetfile
+
 forge 'https://forgeapi.puppetlabs.com'
 moduledir 'vendor_modules'
 

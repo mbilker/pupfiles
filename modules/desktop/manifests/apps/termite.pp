@@ -7,6 +7,10 @@ class desktop::apps::termite {
 
   enduser_file { '.config/termite':
     ensure => directory,
+  }
+
+  enduser_file { '.config/termite/config':
+    ensure => file,
     source => 'desktop/apps/termite'
   }
 }

@@ -9,7 +9,7 @@ define enduser_file::ini (
   $mode = '0600'
 ) {
   if ! defined(Enduser_file[$filename]) {
-    enduser_file {$filename:
+    enduser_file { $filename:
       mode => $mode
     }
   }
