@@ -1,11 +1,11 @@
 # Installs oh-my-zsh under my user account
 
 class console::oh_my_zsh {
-  #require vcsrepo
   require console::zsh
 
-  aur_package { 'zsh-completions': }
-  aur_package { 'zsh-syntax-highlighting': }
+  package { ['zsh-completions', 'zsh-syntax-highlighting']:
+    ensure => present
+  }
 
   include base::mbilker
   include base::packaging::pkgfile
@@ -15,7 +15,7 @@ class console::oh_my_zsh {
     require => [
       Package['zsh'],                         # Actual shell
       Class['base::packaging::pkgfile'],      # Required for not-found hook
-      Aur_package['zsh-syntax-highlighting'], # Required for syntax highlighting
+      Package['zsh-syntax-highlighting'],     # Required for syntax highlighting
       Enduser_file['.zsh']                    # Parent directory
     ]
   }
