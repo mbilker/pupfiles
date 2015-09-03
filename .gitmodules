@@ -1,6 +1,3 @@
 [submodule "modules/ini_setting"]
 	path = modules/ini_setting
 	url = git://perot.me/puppetlabs-inifile
-[submodule "modules/puppetlabs-stdlib"]
-	path = modules/puppetlabs-stdlib
-	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
