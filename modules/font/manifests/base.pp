@@ -17,7 +17,7 @@ class font::base {
   }
 
   exec { 'Update font cache (fc-cache)':
-    command     => shellquote('/usr/bin/env', 'fc-cache', '-f'),
+    command     => shellquote('/usr/bin/sudo', '-u', 'mbilker', '/usr/bin/fc-cache', '-f'),
     refreshonly => true
   }
 }
