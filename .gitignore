@@ -1,6 +1,9 @@
+.tmp
+
+*.gen.pp
+
 this.manifest
 private
 encrypted-private
 private.key
 .directory
-*.gen.pp
