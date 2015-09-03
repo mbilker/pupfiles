@@ -7,6 +7,9 @@ class desktop::media {
   package { 'ffmpeg':
     ensure => present
   }
+  package { 'mpd':
+    ensure => present
+  }
 
   include desktop::media::mpv
   include desktop::media::ncmpcpp
