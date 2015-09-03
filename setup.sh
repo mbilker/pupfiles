@@ -12,6 +12,7 @@ pupPrivateUrlActual=git@mbilker.us:pupfiles-private
 
 scriptDir=$(dirname "$BASH_SOURCE")
 scriptDir=$(cd "$scriptDir" && pwd)
+
 if [ -d "$scriptDir/manifests" ]; then
 	pupDir="$scriptDir"
 fi
@@ -34,18 +35,6 @@ getpackages() {
 if ! pacman -Q puppet &> /dev/null; then
 	pacman -Sy --noconfirm puppet || exit 1
 fi
-
-if ! pacman -Q yaourt &> /dev/null; then
-	if ! grep -iP '^\[archlinuxfr\]$' /etc/pacman.conf &> /dev/null; then
-		echo >> /etc/pacman.conf # Empty line
-		echo '[archlinuxfr]' >> /etc/pacman.conf
-		echo 'Server = http://repo.archlinux.fr/$arch' >> /etc/pacman.conf
-		echo 'SigLevel = Optional' >> /etc/pacman.conf
-	fi
-
-	pacman -Sya --noconfirm yaourt || exit 1
-fi
-
 
 getpackages openssh git scrypt python python2 python-scrypt
 
@@ -161,7 +150,7 @@ while [ ! -f "manifests/$chosenManifest.pp" ]; do
 	echo "$chosenManifest" > this.manifest
 done
 
-modulePath="$pupDir/private/modules:$pupDir/modules:`puppet apply --configprint modulepath`"
+modulePath="$pupDir/private/modules:$pupDir/modules:$pupDir/vendor_modules"
 
 if [ -f "private/manifests/$chosenManifest.pp" ]; then
 	cat "private/manifests/$chosenManifest.pp" "manifests/$chosenManifest.pp" > "manifests/.$chosenManifest.gen.pp"

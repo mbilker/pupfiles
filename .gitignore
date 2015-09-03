@@ -1,4 +1,4 @@
-.tmp
+vendor_modules
 
 *.gen.pp
 
