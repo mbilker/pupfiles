@@ -1,7 +1,9 @@
 # Installs the Atom editor package
 
 class desktop::apps::atom_editor {
-  aur_package { 'atom-editor': }
+  pacman::aur { 'atom-editor':
+    ensure => present
+  }
 
   enduser_file { '.atom':
     ensure => directory
