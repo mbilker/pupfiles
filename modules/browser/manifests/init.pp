@@ -7,8 +7,8 @@ define browser (
     'chrome': {
       include browser::chrome
     }
-    'tor-browser': {
-      include browser::torbrowser
+    default: {
+      fail("Unknown browser '${browser}' provided")
     }
   }
 }
