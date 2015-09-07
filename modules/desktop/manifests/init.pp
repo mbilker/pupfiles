@@ -2,7 +2,7 @@
 
 class desktop (
   $laptop = false,
-  $graphics_drivers = 'nvidia',
+  $graphics_drivers = 'intel',
   $dpi = 100,
   $desktop_environment = 'i3',
   $browser = 'chrome',
