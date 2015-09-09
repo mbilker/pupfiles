@@ -39,17 +39,13 @@ if [ -f "$HOME/.dircolors" ]; then
 	eval $(dircolors ~/.dircolors)
 fi
 
-if [[ $TERM == xterm-termite ]]; then
-	. /etc/profile.d/vte.sh
-	__vte_prompt_command
-fi
-
 export EDITOR=nano # Don't judge me!
 export TERMINAL=termite
 #export GPGKEY=5CFC3B88974EE250
 export PAGER=less
 
-export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${UID}/bus"
+export GOPATH="$HOME/.gopath"
+export PATH="$HOME/.gopath/bin:$PATH"
 
 echo -en "\e[38;05;190m"
 /usr/bin/figlet $(/usr/bin/hostname --short)

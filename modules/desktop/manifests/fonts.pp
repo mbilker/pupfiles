@@ -7,9 +7,21 @@ class desktop::fonts {
     ensure => present,
     notify => Exec['Update font cache (fc-cache)']
   }
-  pacman::aur { ['ttf-comic-neue', 'ttf-lato', 'ttf-opensans']:
+  pacman::aur { ['ttf-lato', 'ttf-opensans']:
     ensure => present,
     notify => Exec['Update font cache (fc-cache)']
+  }
+
+  # Comic Neue
+  font { ['ComicNeue-Angular-Bold-Oblique.ttf', 'ComicNeue-Angular-Bold.ttf',
+          'ComicNeue-Angular-Light-Oblique.ttf', 'ComicNeue-Angular-Light.ttf',
+          'ComicNeue-Angular-Regular-Oblique.ttf',
+          'ComicNeue-Angular-Regular.ttf',
+          'ComicNeue-Bold-Oblique.ttf', 'ComicNeue-Bold.ttf',
+          'ComicNeue-Light-Oblique.ttf', 'ComicNeue-Light.ttf',
+          'ComicNeue-Regular-Oblique.ttf', 'ComicNeue-Regular.ttf'
+          ]:
+    source => 'desktop/fonts/comic-neue'
   }
 
   # Asap
