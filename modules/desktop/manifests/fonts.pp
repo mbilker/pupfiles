@@ -21,7 +21,7 @@ class desktop::fonts {
           'ComicNeue-Light-Oblique.ttf', 'ComicNeue-Light.ttf',
           'ComicNeue-Regular-Oblique.ttf', 'ComicNeue-Regular.ttf'
           ]:
-    source => 'desktop/fonts/comic-neue'
+    source => 'desktop/fonts/comic_neue'
   }
 
   # Asap

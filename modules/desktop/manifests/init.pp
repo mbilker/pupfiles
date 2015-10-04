@@ -1,15 +1,15 @@
 # Main desktop class
 
 class desktop (
-  $laptop = false,
-  $graphics_drivers = 'intel',
-  $dpi = 100,
-  $desktop_environment = 'i3',
   $browser = 'chrome',
+  $desktop_environment = 'i3',
+  $dpi = 100,
+  $games = false,
+  $graphics_drivers = 'intel',
+  $laptop = false,
   $apps = true,
   $fonts = true,
-  $media = true,
-  $games = false
+  $media = true
 ) {
   include desktop::xorg
   include desktop::config_directory
@@ -41,7 +41,7 @@ class desktop (
   }
 
   if $browser {
-    browser {$browser:}
+    browser { $browser: }
   }
 
   include desktop::networkmanager
