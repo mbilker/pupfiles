@@ -2,7 +2,7 @@
 
 ZSHC="$(dirname "${BASH_SOURCE:-$0}")"
 ZSH_CUSTOM="$ZSHC/custom"
-ZSH="$ZSHC/oh-my-zsh"
+ZSH="$HOME/.oh-my-zsh"
 
 DISABLE_AUTO_UPDATE=true
 COMPLETION_WAITING_DOTS=true
@@ -17,27 +17,25 @@ unsetopt correct_all
 source "$ZSH/oh-my-zsh.sh"
 source "$ZSHC/zsh_theme"
 
-if [ -f /usr/share/doc/pkgfile/command-not-found.zsh ]; then
-	source /usr/share/doc/pkgfile/command-not-found.zsh
-fi
-
 if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 if [ -f "$ZSHC/zsh_sudo" ]; then
-	while read -r COMMAND; do
-		alias $COMMAND="sudo $COMMAND"
-	done < "$ZSHC/zsh_sudo"
+  while read -r COMMAND; do
+    alias $COMMAND="sudo $COMMAND"
+  done < "$ZSHC/zsh_sudo"
 fi
 
 if [ -f "$ZSHC/zsh_aliases" ]; then
-	source "$ZSHC/zsh_aliases"
+  source "$ZSHC/zsh_aliases"
 fi
 
 if [ -f "$HOME/.dircolors" ]; then
-	eval $(dircolors ~/.dircolors)
+  eval $(dircolors ~/.dircolors)
 fi
+
+fpath=(~/.zsh/completion $fpath)
 
 export EDITOR=nano # Don't judge me!
 export TERMINAL=termite
@@ -54,5 +52,7 @@ echo -en "\e[0m"
 echo -e "\e[38;05;3m$(/usr/bin/fortune | /usr/bin/cowsay -f small)\e[0m"
 
 if [ -f "$HOME/.ssh/id_ed25519" ]; then
-	eval $(keychain --eval ~/.ssh/id_ed25519)
+  eval $(keychain --eval ~/.ssh/id_ed25519)
 fi
+
+autoload -Uz compinit && compinit -i

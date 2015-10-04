@@ -1,6 +1,2 @@
 alias ssh='autossh -M $(($RANDOM%10000+30000))'
-alias cp='cp -r'
-alias scp='scp -r'
-alias mkdir='mkdir -p'
-alias rsync='rsync -rh --partial --progress'
 alias openports='netstat -tulpn'

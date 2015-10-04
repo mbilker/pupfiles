@@ -14,7 +14,6 @@ class console::oh_my_zsh {
     source  => 'console/zsh',
     require => [
       Package['zsh'],                         # Actual shell
-      Class['base::packaging::pkgfile'],      # Required for not-found hook
       Package['zsh-syntax-highlighting'],     # Required for syntax highlighting
       Enduser_file['.zsh']                    # Parent directory
     ]
@@ -25,7 +24,7 @@ class console::oh_my_zsh {
     recurse => true
   }
 
-  vcsrepo { '/home/mbilker/.zsh/oh-my-zsh':
+  vcsrepo { '/home/mbilker/.oh-my-zsh':
     ensure   => present,
     provider => git,
     source   => 'git://github.com/robbyrussell/oh-my-zsh.git',
