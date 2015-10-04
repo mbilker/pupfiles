@@ -83,7 +83,8 @@ bar {
 }
 
 exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
-exec keychain --agents ssh ~/.ssh/id_ed25519
-exec udiskie
-exec nm-applet
-exec dropbox
+exec /usr/bin/gnome-keyring-daemon
+exec /usr/bin/keychain --agents ssh ~/.ssh/id_ed25519
+exec /usr/bin/udiskie
+exec /usr/bin/nm-applet
+exec /usr/bin/dropbox
