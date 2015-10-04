@@ -1,4 +1,3 @@
-private/modules/private/files/base/networking/tunnels/*.yml
 private/modules/private/manifests/base/networking/hosts.pp
 private/modules/private/manifests/base/networking/tunnels.pp
 private/modules/private/manifests/base/networking/udevrenamedevices.pp
@@ -8,5 +7,5 @@ private/modules/private/templates/base/mbilker/password
 private/modules/private/templates/base/root/password
 private/modules/private/templates/console/gpg/*.asc
 private/modules/private/templates/console/ssh/config.erb
-private/ssh.key
-private/ssh.key.pub
+private/id_ed25519
+private/id_ed25519.pub
