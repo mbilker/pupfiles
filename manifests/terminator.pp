@@ -8,7 +8,8 @@ class { 'pacman':
 }
 
 class { 'desktop':
-  graphics_drivers => 'nvidia',
+  browser          => 'chrome_dev',
+  dpi              => 96,
   games            => true,
-  dpi              => 100
+  graphics_drivers => 'nvidia'
 }
