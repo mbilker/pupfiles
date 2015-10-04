@@ -1,13 +1,8 @@
 # Manages the gpg settings
 
 class console::gpg {
-  file { '/etc/ssl/certs/mayfirst-peoplelink.crt':
-    mode   => '0444',
-    source => 'puppet:///modules/console/gpg/mayfirst-peoplelink.crt'
-  }
   enduser_file { '.gnupg/gpg.conf':
-    source  => 'console/gpg',
-    require => File['/etc/ssl/certs/mayfirst-peoplelink.crt']
+    source => 'console/gpg'
   }
   #include console::gpg::parcimonie
 
