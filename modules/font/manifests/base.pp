@@ -4,6 +4,12 @@ class font::base {
   include base::packaging::infinality
   include desktop::xorg
 
+  exec { 'Forcefully install infinality':
+    command => shellquote('/usr/bin/yes', '|', '/usr/bin/yaourt', '--confirm', '--needed', '--noprogressbar', '-Sy', 'fontconfig-infinality-ultimate'),
+    unless  => "/usr/bin/yaourt -Qk fontconfig-infinality-ultimate",
+    before  => Package['fontconfig']
+  }
+
   package { 'fontconfig':
     ensure  => present,
     name    => 'fontconfig-infinality-ultimate',
