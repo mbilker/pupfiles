@@ -9,7 +9,7 @@ class { 'pacman':
 
 class { 'desktop':
   browser          => 'chrome_dev',
-  dpi              => 96,
+  dpi              => 100,
   games            => false,
   graphics_drivers => 'intel',
   laptop           => true
