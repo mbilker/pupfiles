@@ -1,8 +1,10 @@
 # Installs the multilib repository to pacman
 
 class base::packaging::multilib {
-  pacman::repo { 'multilib':
-    sig_level => 'PackageRequired',
-    order     => 40
+  if $os['architecture'] == 'x86_64' {
+    pacman::repo { 'multilib':
+      sig_level => 'PackageRequired',
+      order     => 40
+    }
   }
 }

@@ -1,6 +1,7 @@
 # Manages system time packages
 
 class base::timekeeping {
+  include base::augeas
   require certs
 
   package { 'chrony':
@@ -27,7 +28,10 @@ class base::timekeeping {
       "set server[. = '3.pool.ntp.org'] 3.pool.ntp.org",
       "set server[. = '3.pool.ntp.org']/iburst ''",
     ],
-    require => Package['chrony'],
+    require => [
+      Package['augeas'],
+      Package['chrony'],
+    ],
     notify  => Service['chrony']
   }
 }
