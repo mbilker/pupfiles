@@ -1,8 +1,13 @@
 # Manages the gpg settings
 
 class console::gpg {
+  enduser_file { '.gnupg':
+    ensure => directory
+  }
+
   enduser_file { '.gnupg/gpg.conf':
-    source => 'console/gpg'
+    source  => 'console/gpg',
+    require => Enduser_file['.gnupg']
   }
   #include console::gpg::parcimonie
 
