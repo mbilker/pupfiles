@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-if [ "$EUID" -ne 0 ]; then
-	echo 'Run me as root.' >&2
-	exit 1
-fi
+#if [ "$EUID" -ne 0 ]; then
+#	echo 'Run me as root.' >&2
+#	exit 1
+#fi
 
 scryptMaxTime=15 # CPU seconds
-scryptMaxMem=1073741824 # Bytes
+scryptMaxMem=536870912 # Bytes
 
 cd $(dirname "$BASH_SOURCE")/..
 
