@@ -15,7 +15,7 @@ class desktop (
   include desktop::config_directory
 
   if $laptop {
-    class {'desktop::laptop':
+    class { 'desktop::laptop':
       desktop_environment => $desktop_environment
     }
   }
