@@ -7,8 +7,8 @@ fi
 
 pupUrl=git://mbilker.us/pupfiles
 pupDir=/var/lib/pupfiles
-pupPrivateUrlInitial=git://mbilker.us/pupfiles-private
-pupPrivateUrlActual=git@mbilker.us:pupfiles-private
+pupPrivateUrlInitial=https://mbilker.us/pupfiles-private.git
+pupPrivateUrlActual=git@mbilker.us:mbilker/pupfiles-private.git
 
 scriptDir=$(dirname "$BASH_SOURCE")
 scriptDir=$(cd "$scriptDir" && pwd)
@@ -36,7 +36,9 @@ if ! pacman -Q puppet &> /dev/null; then
 	pacman -Sy --noconfirm puppet || exit 1
 fi
 
-getpackages openssh git scrypt python python2 python-scrypt
+getpackages openssh git scrypt python python-pip python2 python2-pip
+pip2 install scrypt
+gem install r10k
 
 if [ ! -d "$pupDir" ]; then
 	mkdir -p "$pupDir"
@@ -58,7 +60,7 @@ fi
 
 cd "$pupDir"
 
-if [ ! -f private/ssh.key ]; then
+if [ ! -f private/id_ed25519 ]; then
 	# If we don't have the appropriate ssh key to the private pupfiles repo,
 	# then remove any leftover private stuff
 	rm -rf private.key private encrypted-private
@@ -150,6 +152,7 @@ while [ ! -f "manifests/$chosenManifest.pp" ]; do
 	echo "$chosenManifest" > this.manifest
 done
 
+$(ruby -rubygems -e "puts Gem.user_dir")/bin/r10k puppetfile install
 modulePath="$pupDir/private/modules:$pupDir/modules:$pupDir/vendor_modules"
 
 if [ -f "private/manifests/$chosenManifest.pp" ]; then

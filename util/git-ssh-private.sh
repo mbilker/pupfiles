@@ -10,4 +10,4 @@ fi
 export PUP_JUST_SET_VARIABLES='true'
 source "$scriptDir/setup.sh"
 unset PUP_JUST_SET_VARIABLES
-exec ssh -i "$pupDir/private/ssh.key" "$@"
+exec ssh -i "$pupDir/private/id_ed25519" "$@"
