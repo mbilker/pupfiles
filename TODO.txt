@@ -1,0 +1,16 @@
+* figlet
+* fortune-mod
+* cowsay
+* augeas
+* lightdm
+* lightdm-gtk-greeter
+* terminus-font
+* network-manager-applet
+* mate-polkit
+* gnome-keyring
+* udiskie
+* dropbox
+* gtk-engines
+* gnome-themes-standard
+* pulseaudio
+
