@@ -1,19 +1,19 @@
 class desktop::graphics::intel {
-	include base::mkinitcpio
-	include base::packaging::multilib
-	include desktop::xorg
+  include base::mkinitcpio
+  include base::packaging::multilib
+  include desktop::xorg
 
-	package {'xf86-video-intel':}
-	package {'libva-intel-driver':}
-	package {'driconf':}
+  package {'xf86-video-intel':}
+  package {'libva-intel-driver':}
+  package {'driconf':}
 
-	$i915_command = shellquote(
-		'/usr/bin/env', 'echo',
-		'MODULES="$MODULES i915"'
-	)
+  $i915_command = shellquote(
+    '/usr/bin/env', 'echo',
+    'MODULES="$MODULES i915"'
+  )
 
-	exec {'/etc/mkinitcpio.conf/modules/i915':
-		command => "$i915_command >> /etc/mkinitcpio.conf",
+  exec {'/etc/mkinitcpio.conf/modules/i915':
+    command => "$i915_command >> /etc/mkinitcpio.conf",
 		unless => shellquote(
 			'/usr/bin/env', 'grep', '-P',
 			'^MODULES="\$MODULES i915"$',
