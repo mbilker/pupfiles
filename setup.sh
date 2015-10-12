@@ -36,9 +36,9 @@ if ! pacman -Q puppet &> /dev/null; then
 	pacman -Sy --noconfirm puppet || exit 1
 fi
 
-getpackages openssh git scrypt augeas python python-pip python2 python2-pip
+getpackages augeas git openssh python python-pip python2 python2-pip scrypt
 pip2 install scrypt
-gem install r10k
+gem install ruby-augeas r10k
 
 if [ ! -d "$pupDir" ]; then
 	mkdir -p "$pupDir"
