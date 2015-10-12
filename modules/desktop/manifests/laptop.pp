@@ -16,7 +16,7 @@ class desktop::laptop {
   }
 
   service { 'laptop-mode':
-    ensure  => enable,
-    require => Package['laptop-mode-tools']
+    enable  => true,
+    require => Pacman::Aur['laptop-mode-tools']
   }
 }
