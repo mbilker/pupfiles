@@ -11,7 +11,10 @@
   editor:
     invisibles: {}
     tabType: "soft"
-  linter: {}
+  linter:
+    showErrorPanel: false
   "tabs-to-spaces":
     onSave: "untabify"
   latex: {}
+  "exception-reporting":
+    userId: "eb8f8988-893e-127a-722e-a8d902a7fc36"
