@@ -1,7 +1,7 @@
 # Sets up my user account
 
 class base::mbilker {
-  include base
+  include base::qemu
   include console::zsh
 
   user {'mbilker':
