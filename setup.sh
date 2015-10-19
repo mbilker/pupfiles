@@ -42,18 +42,14 @@ gem install ruby-augeas r10k
 
 if [ ! -d "$pupDir" ]; then
 	mkdir -p "$pupDir"
-	if ! git clone --recursive "$pupUrl" "$pupDir"; then
+	if ! git clone "$pupUrl" "$pupDir"; then
 		rm -rf "$pupDir"
 		exit 1
 	fi
 else
 	cd "$pupDir"
-	if ! git pull &> /dev/null; then
+	if ! git pull origin master &> /dev/null; then
 		echo 'Could not update main repository.'
-		exit 1
-	fi
-	if ! git submodule update &> /dev/null; then
-		echo 'Could not update submodules.'
 		exit 1
 	fi
 fi
