@@ -6,14 +6,16 @@ class font::base {
 
   exec { 'Forcefully install infinality':
     command => shellquote('/usr/bin/yes', '|', '/usr/bin/yaourt', '--confirm', '--needed', '--noprogressbar', '-Sy', 'fontconfig-infinality-ultimate'),
-    unless  => "/usr/bin/yaourt -Qk fontconfig-infinality-ultimate",
-    before  => Package['fontconfig']
+    unless  => "/usr/bin/yaourt -Qk fontconfig-infinality-ultimate"
   }
 
   package { 'fontconfig':
     ensure  => present,
     name    => 'fontconfig-infinality-ultimate',
-    require => Package['xorg-server']
+    require => [
+      Package['xorg-server'],
+      Exec['Forcefully install infinality']
+    ]
   }
 
   enduser_file { '.fonts':
