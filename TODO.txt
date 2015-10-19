@@ -6,11 +6,10 @@
 * lightdm-gtk-greeter
 * terminus-font
 * network-manager-applet
-* mate-polkit
+* mate
 * gnome-keyring
 * udiskie
 * dropbox
 * gtk-engines
 * gnome-themes-standard
 * pulseaudio
-
