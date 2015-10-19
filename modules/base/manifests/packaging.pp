@@ -5,8 +5,11 @@ class base::packaging {
   package { 'abs': }
   package { 'namcap': }
 
-  include base::packaging::pkgfile
+  include base::packaging::archlinuxfr
+  include base::packaging::atlassian
   include base::packaging::multilib
+  include base::packaging::infinality
+  include base::packaging::pkgfile
 
   #file { '/etc/pacman.d/pupfiles-options.conf':
   #  source  => 'puppet:///modules/base/packaging/pacman.d/pupfiles-options.conf',
