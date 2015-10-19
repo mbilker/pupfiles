@@ -13,7 +13,7 @@ class desktop::media {
 
   include desktop::media::mpv
   include desktop::media::ncmpcpp
-  include desktop::media::cava
+  #include desktop::media::cava
 
   package  {'mencoder':
     ensure => present
@@ -21,7 +21,7 @@ class desktop::media {
   package { 'mkvtoolnix-cli':
     ensure => present
   }
-  package { 'mkvtoolnix-gtk':
+  package { 'mkvtoolnix-gui':
     ensure => present
   }
   package { 'handbrake-cli':
