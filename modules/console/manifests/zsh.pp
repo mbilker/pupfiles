@@ -2,5 +2,7 @@
 # Look for console::oh_my_zsh instead
 
 class console::zsh {
-  package { 'zsh': }
+  package { 'zsh':
+    ensure => present
+  }
 }
