@@ -13,3 +13,5 @@
 * gtk-engines
 * gnome-themes-standard
 * pulseaudio
+* atlassian repo key import
+* infinality repo key import
