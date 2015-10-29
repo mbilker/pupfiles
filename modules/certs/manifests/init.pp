@@ -1,6 +1,7 @@
+# Install packaged certificate authorities
+
 class certs {
-  package {'ca-certificates':}
-  certs::cert {'RiseupCA.pem':}
-  certs::cert {'CAcert-root.pem':}
-  certs::cert {'CAcert-class3.pem':}
+  package { 'ca-certificates':
+    ensure => present
+  }
 }
