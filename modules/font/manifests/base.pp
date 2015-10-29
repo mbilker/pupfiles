@@ -4,17 +4,17 @@ class font::base {
   include base::packaging::infinality
   include desktop::xorg
 
-  exec { 'Forcefully install infinality':
-    command => shellquote('/usr/bin/yes', '|', '/usr/bin/yaourt', '--confirm', '--needed', '--noprogressbar', '-Sy', 'fontconfig-infinality-ultimate'),
-    unless  => "/usr/bin/yaourt -Qk fontconfig-infinality-ultimate"
-  }
+  #exec { 'Forcefully install infinality':
+  #  command => shellquote('/usr/bin/yes', '|', '/usr/bin/pacman', '--confirm', '--needed', '--noprogressbar', '-Sy', 'fontconfig-infinality-ultimate'),
+  #  unless  => "/usr/bin/pacman -Qk fontconfig-infinality-ultimate"
+  #}
 
   package { 'fontconfig':
     ensure  => present,
-    name    => 'fontconfig-infinality-ultimate',
+  #  name    => 'fontconfig-infinality-ultimate',
     require => [
       Package['xorg-server'],
-      Exec['Forcefully install infinality']
+  #    Exec['Forcefully install infinality']
     ]
   }
 
