@@ -23,6 +23,17 @@ fi
 
 setterm -blength 0
 
+if ! pacman -Q yaourt &> /dev/null; then
+	if ! grep -iP '^\[archlinuxfr\]$' /etc/pacman.conf &> /dev/null; then
+		echo >> /etc/pacman.conf # Empty line
+		echo '[archlinuxfr]' >> /etc/pacman.conf
+		echo 'Server = http://repo.archlinux.fr/$arch' >> /etc/pacman.conf
+		echo 'SigLevel = Optional' >> /etc/pacman.conf
+	fi
+
+	pacman -Sy --noconfirm yaourt || exit 1
+fi
+
 getpackages() {
 	for package; do
 		if ! puppet resource package "$package" ensure=present &> /dev/null; then
