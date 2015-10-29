@@ -7,7 +7,7 @@ class base::packaging::infinality {
     order     => 52
   }
 
-  if $os['architecture'] == 'x86_64' {
+  if $::hardwaremodel == 'x86_64' {
     pacman::repo { 'infinality-bundle-multilib':
       server    => 'http://bohoomil.com/repo/multilib/$arch',
       sig_level => 'Optional',

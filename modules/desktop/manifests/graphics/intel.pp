@@ -12,7 +12,7 @@ class desktop::graphics::intel {
     ensure => present
   }
 
-  if $::os['architecture'] == 'x86_64' {
+  if $::hardwaremodel == 'x86_64' {
     package { ['lib32-mesa', 'lib32-mesa-libgl']:
       ensure => present
     }
