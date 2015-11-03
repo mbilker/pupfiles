@@ -1,2 +1,0 @@
-alias ssh='autossh -M $(($RANDOM%10000+30000))'
-alias openports='netstat -tulpn'
